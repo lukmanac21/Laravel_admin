@@ -26,16 +26,8 @@ Route::group([
         Route::get('user', 'AuthController@user');
     });
 });
-Route::group([
-    'prefix' => 'auth'
-], function () {
-    Route::post('store', 'CarController@store');
-  
-});
-Route::middleware('auth:api')->get('/car', function (Request $request) {
-    return $request->car();
-});
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::resource('car','Api\CarController');
 ?>	
