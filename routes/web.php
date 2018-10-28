@@ -10,7 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('passports','PassportController');
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('book', 'BookController@index');
+Route::resource('books','BookController');
+Route::resource('user', 'CarController');
+Route::get('addbook', function()
+{
+    return View::make('admin/book_create');
+});
+Route::match(['get','post'],'/admin','AdminController@login');
+Route::get('/admin/dashboard','AdminController@dashboard');
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
